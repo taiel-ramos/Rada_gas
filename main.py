@@ -3,19 +3,14 @@ import pandas as pd
 from apify import Actor
 
 MODEL_PATH = "modelo_gas_extratrees.pkl"
-FEATURES = ["mq135", "mq5", "mq6"]  # <-- TUS columnas, en el orden exacto del entrenamiento
 CSV_KEY = "matriz_resultados.csv"
 
 
 async def main() -> None:
-
     async with Actor:
-        import os
-        Actor.log.info(f"Directorio: {os.getcwd()}")
-        Actor.log.info(f"Archivos: {sorted(os.listdir('.'))}")
-        Actor.log.info(f"Existe el pkl: {os.path.exists(MODEL_PATH)}")
         modelo = joblib.load(MODEL_PATH)
-        Actor.log.info(f"Modelo cargado. Clases: {list(modelo.classes_)}")
+        FEATURES = list(modelo.feature_names_in_)
+        Actor.log.info(f"Modelo cargado. {len(FEATURES)} features. Clases: {list(modelo.classes_)}")
 
         actor_input = await Actor.get_input() or {}
         lecturas = actor_input.get("lecturas", [])
@@ -25,7 +20,7 @@ async def main() -> None:
         df = pd.DataFrame(lecturas)
         faltantes = [c for c in FEATURES if c not in df.columns]
         if faltantes:
-            raise ValueError(f"Faltan columnas: {faltantes}")
+            raise ValueError(f"Faltan {len(faltantes)} columnas. Primeras: {faltantes[:5]}")
 
         X = df[FEATURES]
         df_out = df.copy()
