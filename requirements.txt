@@ -1,0 +1,5 @@
+scikit-learn==<versión de Colab>
+pandas==<versión de Colab>
+numpy==<versión de Colab>
+joblib==<versión de joblib>
+apify==1.7.0
