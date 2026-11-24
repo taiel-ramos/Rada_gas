@@ -1,0 +1,15 @@
+{
+  "title": "RADA-GAS input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "lecturas": {
+      "title": "Lecturas de sensores",
+      "type": "array",
+      "description": "Cada elemento es un vector de 128 valores (f0..f127).",
+      "editor": "stringList",
+      "prefill": []
+    }
+  },
+  "required": ["lecturas"]
+}
