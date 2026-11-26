@@ -1,0 +1,18 @@
+# RADA-GAS — Clasificador de gas
+
+Clasifica lecturas de sensores de gas en 6 categorías usando un modelo
+ExtraTrees entrenado sobre 128 features.
+
+## Qué hace
+
+Recibe una o más lecturas de sensores y devuelve, para cada una, el gas
+detectado y la confianza de la predicción.
+
+## Input
+
+```json
+{
+  "lecturas": [
+    [0.02, 0.04, 0.11, "...128 valores..."]
+  ]
+}
