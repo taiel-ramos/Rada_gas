@@ -7,12 +7,14 @@
       "type": "string",
       "title": "Predicciones",
       "description": "Clasificación de gas por lectura de sensores.",
+      "template": "https://api.apify.com/v2/datasets/{{resource.defaultDatasetId}}/items?clean=true&format=json",
       "templateUri": "https://api.apify.com/v2/datasets/{{resource.defaultDatasetId}}/items?clean=true&format=json"
     },
     "matriz": {
       "type": "string",
       "title": "Matriz de resultados",
       "description": "Archivo CSV con la distribución de predicciones.",
+      "template": "https://api.apify.com/v2/key-value-stores/{{resource.defaultKeyValueStoreId}}/records/matriz_resultados.csv",
       "templateUri": "https://api.apify.com/v2/key-value-stores/{{resource.defaultKeyValueStoreId}}/records/matriz_resultados.csv"
     }
   }
